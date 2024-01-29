@@ -4,14 +4,75 @@ html, body {
 	padding: 0;
 }
 
-.center {
-	color: lightgreen;
-	background-color: red;
+div	{
+	word-wrap: break-word;
+}
+
+.wrapper {
+	background-color: black;
+	color: grey;
 	font-family: sans-serif;
 
 	height: 100%;
 
 	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header {
+	height: 20%;
+	font-size: xxx-large;
+}
+
+.content-wrapper {
+	height: 60%;
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+}
+
+.content {
+	max-width: 300px;
+	margin: 1%;
+	padding: 1%;
+	border-radius: 20px;
+
+	color: black;
+	font-size: large;
+
+	background-color: darkgrey;
+}
+
+.title {
+	text-align: center;
+}
+
+.info {
+	text-align: justify;
+}
+
+.footer {
+	width: 100%;
+	height: 20%;
+
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+
+	position: relative;
+}
+
+.copyright {
+	text-align: right;
+
+	position: absolute;
+	bottom: 0;
+	right: 0;
+
+	padding: 1%;
 }
