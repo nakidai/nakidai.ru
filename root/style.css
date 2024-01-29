@@ -1,4 +1,16 @@
-html {
-	color: green;
-	background: red;
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.center {
+	color: lightgreen;
+	background-color: red;
+
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
