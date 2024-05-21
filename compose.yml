@@ -1,0 +1,8 @@
+services:
+  server:
+    image: cupcakearmy/static
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./root/:/srv/:ro
