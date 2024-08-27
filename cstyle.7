@@ -1,0 +1,275 @@
+.Dd August 27, 2024
+.Dt CSTYLE 7
+.Os Nakidai
+.
+.Sh NAME
+.Nm C style
+.Nd style that I use in my programs
+.
+.Sh DESCRIPTION
+Recently I realized that
+I can't decide
+which code style to use,
+and I change it
+from project to project.
+So I decided to
+make a document that
+will describe
+my code style
+so it will look similar
+anywhere.
+.
+.Pp
+However,
+even while I want to use one style everywhere,
+these rules can be omitted in favor of readabilty.
+.
+.Ss Indetation
+I indent my code by 4 spaces.
+I try to keep my lines shorter than
+120 columns,
+but I will not split long strings
+when printing something.
+.
+.Ss Comments
+I never use
+.Ql // ,
+instead,
+I use
+.Ql /* ... */
+or
+.Bd -literal -offset indent
+/*
+ * ...
+ */
+.Ed
+for commenting,
+because it's more widely supported.
+.
+.Pp
+I document code in headers
+like
+.Lk https://www.doxygen.nl/manual/docblocks.html Doxygen
+says
+(note extra asterisk
+on the first line):
+.Bd -literal -offset indent
+/**
+ * Some descrpition
+ * Maybe more descrpition
+ * @param parameter Descrption
+ * @return return value descrpition
+ */
+.Ed
+.
+.Ss Brackets
+I place braces
+on the next line:
+.Bd -literal -offset indent
+if (/* condition */)
+{
+    /* ... */
+}
+.Ed
+.
+.Pp
+In if-else chain
+I will place else
+on the same line
+as the closing brace:
+.Bd -literal -offset indent
+if (/* condition */)
+{
+    /* ... */
+} else
+{
+    /* ... */
+}
+.Ed
+It's same for do-while loops.
+.
+.Pp
+I can omit braces
+if they're not necessary.
+For consistence,
+I will place them
+if at least one
+.Ql if
+in the chain
+will require them.
+.
+.Pp
+I don't place spaces
+between function name
+and parenthesis,
+but place one
+after
+.Ql if ,
+.Ql for ,
+before and after
+.Ql while
+(in case it's
+do-while or while).
+Also
+I place parenthesis
+after
+.Ql sizeof .
+.
+.Pp
+I don't place extra spaces
+inside of parenthesis,
+but place
+inside of braces.
+Also I always place one space
+after commas.
+.
+.Ss Typing
+I can typedef some
+standard type
+for adding abstractness.
+I prefer
+not adding pointerness
+in the typedef,
+instead,
+I place asterisks
+on lines
+with variable declaring.
+I place asterisks
+near the variable,
+not near the type,
+because the last way
+may confuse coder.
+.
+.Pp
+I will not typedef
+any enums or structs.
+I use types
+from
+.Ql stdint.h
+instead of
+typedefing my own.
+.
+.Ss Naming
+In simple projects
+with several functions
+I don't care about it
+so much
+(and maybe some other
+sections).
+.
+.Pp
+Firstly, names
+have a prefix with
+its namespace
+or class
+or whatever.
+They can be chained
+using underscore.
+Also there's underscore
+after the chain
+(splitting it with
+next name).
+Namespaces and classes
+are named in PascalCase.
+For example:
+.Dl Namespace_Class_init
+I may name
+Functions related to main
+(needed for starting the main program)
+without any prefix.
+.
+.Pp
+Functions,
+methods,
+or variables
+are named in pascalCase:
+.Dl Namespace_Class_someMethod
+.
+.Pp
+Types,
+structs,
+enums,
+unions
+are named PascalCase
+just like prefixes:
+.Dl Namespace_Class_SomeType
+.
+.Pp
+Constants
+are named in MACRO_CASE:
+.Dl Namespace_Class_SOME_CONST
+.
+.Pp
+Local variables
+and functions
+(declared
+inside of functions
+or with
+.Ql static )
+are named in snake_case.
+.
+.Ss Other's code
+If I need something,
+firstly I try to find it
+in the C standard,
+older is preferred,
+but C11 is OK too.
+Next,
+if I don't care about windows
+in my project,
+I try to find it
+in POSIX
+(with the same situation
+when searching in C standards).
+Next I try to find
+some
+(preferable multiplatform)
+library that
+covers my needs.
+.
+.Ss Organization
+Depending on complexity
+of the project,
+I either
+.Bl -bullet
+.It
+create complex structure
+with
+.Pa src
+and
+.Pa include
+directories that
+store the code and headers.
+Main file is stored at
+.Pa src/main.c .
+Platform-specific things
+are moved into
+.Pa {src,include}/platform
+folders.
+If there're many
+.Dq *.in
+files, I may create
+.Pa templates
+folder.
+.It
+place all the file(s
+if project is complex
+bot not too)
+in one directory,
+naming main file as
+project name.
+.El
+.
+.Pp
+In the root I place
+configure script
+(if proejct is complex)
+and Makefile.
+I write configure scripts
+by hand,
+so no autotools
+or other scary things
+are needed.
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt plaza521@inbox.ru
