@@ -6,7 +6,8 @@ FILES = ${GEN} style.css pubkey.asc
 all: ${GEN}
 
 index.html: index.7
-	mandoc -Thtml index.7 -Ostyle=style.css > index.html
+	mandoc -Thtml index.7 -Ostyle=style.css | sed -e '/<head>/a\
+		<link rel="me" href="https://mstdn.social/@nakidai">' > index.html
 
 cstyle.html: cstyle.7
 	mandoc -Thtml cstyle.7 -Ostyle=style.css > cstyle.html
