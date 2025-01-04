@@ -1,7 +1,7 @@
 WEBROOT ?= root
 
 GEN = index.html cstyle.html
-FILES = ${GEN} style.css plaza521.asc nakidai.asc
+FILES = ${GEN} style.css plaza521.asc nakidai.asc isc 2bsd
 
 all: ${GEN}
 
