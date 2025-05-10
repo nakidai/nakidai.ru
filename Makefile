@@ -23,7 +23,7 @@ clean:
 	${RM} ${GEN}
 	${RM} thoughts/*.txt
 
-install: ${FILES}
+install: ${FILES} ${THOUGHTS}
 	install -dm755 ${WEBROOT}
 	install -Cm644 ${FILES} ${WEBROOT}
 	install -dm755 ${WEBROOT}/thoughts
