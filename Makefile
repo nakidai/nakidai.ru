@@ -1,5 +1,6 @@
 WEBROOT ?= root
 
+THINDEX = thoughts/index.html
 THOUGHTS = thoughts/000_about.txt
 GEN = index.html cstyle.html
 FILES = ${GEN} style.css plaza521.asc nakidai.asc isc 2bsd
@@ -7,7 +8,7 @@ FILES = ${GEN} style.css plaza521.asc nakidai.asc isc 2bsd
 RM ?= rm -f
 CP ?= cp -a
 
-all: ${GEN} ${THOUGHTS}
+all: ${GEN} ${THOUGHTS} ${THINDEX}
 
 index.html: index.7
 	mandoc -Thtml index.7 -Ostyle=style.css | sed -e '/<head>/a\
@@ -19,14 +20,19 @@ cstyle.html: cstyle.7
 thoughts/000_about.txt: thoughts/000_about.7
 	mandoc -Tascii thoughts/000_about.7 | col -b > thoughts/000_about.txt
 
+${THINDEX}: ${THOUGHTS} thoughts/index.sh
+	( cd thoughts && ./index.sh > index.html )
+
 clean:
 	${RM} ${GEN}
-	${RM} thoughts/*.txt
+	${RM} ${THOUGHTS}
+	${RM} ${THINDEX}
 
-install: ${FILES} ${THOUGHTS}
+install: ${FILES} ${THOUGHTS} ${THINDEX}
 	install -dm755 ${WEBROOT}
 	install -Cm644 ${FILES} ${WEBROOT}
 	install -dm755 ${WEBROOT}/thoughts
 	install -Cm644 ${THOUGHTS} ${WEBROOT}/thoughts
+	install -Cm644 ${THINDEX} ${WEBROOT}/thoughts
 
 .PHONY: all clean install
