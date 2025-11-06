@@ -21,7 +21,7 @@ thoughts/000_about.txt: thoughts/000_about.7
 	mandoc -Tascii thoughts/000_about.7 | col -b > thoughts/000_about.txt
 
 ${THINDEX}: ${THOUGHTS} thoughts/index.sh
-	( cd thoughts && ./index.sh > index.html )
+	thoughts/index.sh ${THOUGHTS} > thoughts/index.html
 
 clean:
 	${RM} ${GEN}

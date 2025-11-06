@@ -7,6 +7,6 @@ echo '<html><head>
 </head><body>
 <p>These are my thoughts:</p>
 <ul class="Bl-bullet">'
-for file in *.txt; do echo "<li><a class=\"Lk\" href=\"$file\">$file</a></li>"; done
+for file in $@; do echo "<li><a class=\"Lk\" href=\"`basename $file`\">`basename $file`</a></li>"; done
 echo "</ul>
 </body></html>"
