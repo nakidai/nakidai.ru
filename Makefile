@@ -1,7 +1,7 @@
 WEBROOT ?= root
 
 THINDEX = thoughts/index.html
-THOUGHTS = thoughts/000_about.txt
+THOUGHTS = thoughts/000_about.txt thoughts/001_cla.pdf
 GEN = index.html cstyle.html
 FILES = ${GEN} style.css plaza521.asc nakidai.asc isc 2bsd
 
